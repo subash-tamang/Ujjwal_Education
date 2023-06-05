@@ -6,10 +6,18 @@
 
 {% block content %}
   {% include "schools/includes/header.html" %}
-  <form>
+  {% comment %} <form>
     {{ contact }}
     <button>Send</button>
-  </form>
+  </form> {% endcomment %}
   
+  <form method="POST">
+    {% csrf_token %}
+    <label for="username">Your Name</label>
+    <input id="username" name="user-name" type="text">
+    <button>Send</button> 
+    {% comment %} default type is submit like <button type="submit">Send</button> {% endcomment %}
+  </form>
+
 {% endblock%}
 
