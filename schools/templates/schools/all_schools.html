@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title_name %}Schools{% endblock %}
+
+{% block content %}
+  {% include "schools/includes/header.html" %}
+
+  {% comment %} <ul>
+    <li><a href="{% url "school-detail" "samriddhi" %}">Samriddhi</a></li>
+    <li><a href="{% url "school-detail" "euro" %}">Euro</a></li>
+    <li><a href="{% url "school-detail" "triyog" %}">Triyog</a></li>
+  <ul>   {% endcomment %}
+
+    <ul>
+      {% for school in schools %}
+        <li><a href="{% url "school-detail" school.id %}">{{ school.name }}</a></li>
+      {% endfor %}
+    </ul>
+{% endblock %}

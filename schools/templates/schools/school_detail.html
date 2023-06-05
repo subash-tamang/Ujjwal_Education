@@ -1,0 +1,12 @@
+{%  extends "base.html" %}
+
+{% block title_name %}{{ school.name }}{% endblock %}
+
+{% block content %}
+  {% include "schools/includes/header.html" %}
+  <h2>{{ school.name }}</h2>
+
+  <h3>{{ school.established_date }}</h3>
+
+  <p>{{ school.description }}</p>
+{% endblock %}
