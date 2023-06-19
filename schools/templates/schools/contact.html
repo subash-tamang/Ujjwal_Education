@@ -6,18 +6,48 @@
 
 {% block content %}
   {% include "schools/includes/header.html" %}
-  {% comment %} <form>
-    {{ contact }}
-    <button>Send</button>
-  </form> {% endcomment %}
-  
   <form method="POST">
     {% csrf_token %}
+
+    {% comment %} {{ contact }} {% endcomment %}
+
+    {% for field in contact %}
+      <div class="form-control {% if field.errors %}errors{% endif %}">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}  
+      </div>
+    {% endfor %}
+    
+    {% comment %} <div class="form-control {% if contact.user_name.errors %}errors{% endif %}">
+      {{ contact.user_name.label_tag }}
+      {{ contact.user_name }}
+      {{ contact.user_name.errors }}  
+    </div>
+    <div class="form-control {% if contact.message.errors %}errors{% endif %}">
+      {{ contact.message.label_tag }}
+      {{ contact.message }}
+      {{ contact.message.errors }} 
+    </div>
+    <div class="form-control {% if contact.rating.errors %}errors{% endif %}">
+      {{ contact.rating.label_tag }}
+      {{ contact.rating }}
+      {{ contact.rating.errors }} 
+    </div> {% endcomment %}
+    <button>Send</button>
+  </form>
+  
+  {% comment %} <form action="/" method="POST"> {% endcomment %}
+  {% comment %} <form method="POST">
+    {% csrf_token %}
+    {% if has_error %}
+      <p>This form is invalid - Please enter valid username!</p>
+    {% endif %}
     <label for="username">Your Name</label>
     <input id="username" name="user-name" type="text">
-    <button>Send</button> 
+    <button>Send</button>  {% endcomment %}
     {% comment %} default type is submit like <button type="submit">Send</button> {% endcomment %}
-  </form>
+  {% comment %} </form> {% endcomment %}
 
 {% endblock%}
 
